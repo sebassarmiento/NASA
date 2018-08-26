@@ -22,7 +22,7 @@ class NavBar extends Component {
                         <Toolbar>
 
                             <IconButton>
-                                <img src={Logo} height='40px' />
+                                <img src={Logo} height='40px' alt="Nasa logo" />
                             </IconButton>
 
                             <NavLink to="/" style={styles.navBarText} >

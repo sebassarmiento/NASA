@@ -5,6 +5,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
 
 
+const styles = {
+    descr: { padding: 20, margin: 20, fontSize: 20 }
+}
+
 class Test extends Component {
 
     constructor() {
@@ -34,7 +38,7 @@ class Test extends Component {
                         <img src={this.state.data.hdurl}
                             width='80%'
                             alt={this.state.data.title} />
-                        <p>{this.state.data.explanation}</p>
+                        <p style={styles.descr} >{this.state.data.explanation}</p>
                     </div> : <CircularProgress />
                 }
             </div>

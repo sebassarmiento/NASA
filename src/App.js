@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './components/main'
 import Asteroids from './components/asteroids'
@@ -7,12 +6,16 @@ import Contact from './components/contact'
 import Jobs from './components/jobs'
 import Navigation from './components/nav'
 
+const styles = {
+  App: { textAlign: 'center' }
+}
+
 
 class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div style={styles.App} >
       <BrowserRouter >
       <div>
       <Navigation />

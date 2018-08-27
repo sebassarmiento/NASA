@@ -1,5 +1,5 @@
 body{
-    background: url('../img/asteroids-bg.jpg') center ;
+    background: url('../img/asteroids-bg.jpg') center top;
 }
 
 button:hover{

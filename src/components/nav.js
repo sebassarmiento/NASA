@@ -30,7 +30,7 @@ class NavBar extends Component {
                             </NavLink>
 
 
-                            <NavLink to="/about" style={styles.navBarText} >
+                            <NavLink to="/asteroids" style={styles.navBarText} >
                                 <Typography style={{color: 'white'}} >Asteroids</Typography>
                             </NavLink>
 

@@ -21,7 +21,7 @@ class App extends Component {
       <Navigation />
       <Switch>
         <Route path='/' component={Home} exact />
-        <Route path='/about' component={Asteroids} exact />
+        <Route path='/asteroids' component={Asteroids} exact />
         <Route path='/contact' component={Contact} exact />
         <Route path='/jobs' component={Jobs} exact />
       </Switch>

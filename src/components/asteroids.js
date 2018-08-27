@@ -18,6 +18,10 @@ const styles = {
   footerLink: { textDecoration: 'none', color: 'black', margin: 30, padding: 20, marginTop:50 }
 }
 
+let date = new Date()
+
+console.log(date.getFullYear())
+
 class Asteroids extends Component {
   constructor() {
     super()

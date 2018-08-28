@@ -52,9 +52,9 @@ class Asteroids extends Component {
   sortBy(value){
     const newData = this.state.data
 
-    value === 'vel' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].relative_velocity.kilometers_per_hour - a.close_approach_data[0].relative_velocity.kilometers_per_hour ) : null
-    value === 'dia' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.estimated_diameter.kilometers.estimated_diameter_max - a.estimated_diameter.kilometers.estimated_diameter_max ) : null
-    value === 'dis' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].miss_distance.kilometers - a.close_approach_data[0].miss_distance.kilometers ) : null
+    value === 'vel' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].relative_velocity.kilometers_per_hour - a.close_approach_data[0].relative_velocity.kilometers_per_hour ) : console.log(null)
+    value === 'dia' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.estimated_diameter.kilometers.estimated_diameter_max - a.estimated_diameter.kilometers.estimated_diameter_max ) : console.log(null)
+    value === 'dis' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].miss_distance.kilometers - a.close_approach_data[0].miss_distance.kilometers ) : console.log(null)
     
     this.setState({
       data: newData
@@ -67,9 +67,9 @@ class Asteroids extends Component {
 
     return (
       <div>
-        <h1 style={{color: 'white'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
+        <h1 style={{color: 'black'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
 
-        <h3 style={{color: 'white'}} >Sort by: 
+        <h3 style={{color: 'black'}} >Sort by: 
           <select ref={this.selectSort} >
             <option value="vel" >Velocity</option>
             <option value="dia" >Diameter</option>
@@ -100,7 +100,7 @@ class Asteroids extends Component {
 
         </Grid>
 
-        <footer>
+        <footer style={{margin: 20, padding: 20}} >
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
           <a href="/contact" style={styles.footerLink} >Contact</a>

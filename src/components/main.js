@@ -6,7 +6,8 @@ const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=JsG393zPVDFLqXc7Zbn
 
 
 const styles = {
-    descr: { padding: 20, margin: 20, fontSize: 20 }
+    descr: { padding: 20, margin: 20, fontSize: 20, color: 'black' },
+    title: { color: 'black', fontSize: 40 }
 }
 
 class Test extends Component {
@@ -24,8 +25,9 @@ class Test extends Component {
     }
 
     render() {
+
         return (
-            <div className="App">
+            <div className="App" >
                 
                 {
                     this.state.data ? console.log(this.state.data) : null
@@ -33,7 +35,7 @@ class Test extends Component {
 
                 {
                     this.state.data ? <div>
-                        <h1>{this.state.data.title}</h1>
+                        <h1 style={styles.title} >{this.state.data.title}</h1>
                         <h4>{this.state.data.date}</h4>
                         <img src={this.state.data.hdurl}
                             width='80%'

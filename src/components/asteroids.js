@@ -5,7 +5,17 @@ import Grid from '@material-ui/core/Grid';
 import '../css/asteroids.css';
 
 
-const API_URL = 'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
+let date = new Date()
+
+let year = date.getFullYear()
+
+let month = ('0' + (date.getMonth() + 1 )).slice(-2)
+
+let day = ('0' + date.getDate()).slice(-2)
+
+let myDate = year + '-' + month + '-' + day
+
+const API_URL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + myDate + '&end_date=' + myDate + '&api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
 
 const styles = {
   paper: { paddingTop: 20, paddingBottom: 20 },
@@ -18,15 +28,14 @@ const styles = {
   footerLink: { textDecoration: 'none', color: 'black', margin: 30, padding: 20, marginTop:50 }
 }
 
-let date = new Date()
-
-console.log(date.getFullYear())
-
 class Asteroids extends Component {
   constructor() {
     super()
     this.state = {}
 
+    this.selectSort = React.createRef()
+
+    this.astArray = []
     this.getData = this.getData.bind(this)
   }
 
@@ -40,15 +49,37 @@ class Asteroids extends Component {
     }))
   }
 
+  sortBy(value){
+    const newData = this.state.data
+
+    value === 'vel' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].relative_velocity.kilometers_per_hour - a.close_approach_data[0].relative_velocity.kilometers_per_hour ) : console.log(null)
+    value === 'dia' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.estimated_diameter.kilometers.estimated_diameter_max - a.estimated_diameter.kilometers.estimated_diameter_max ) : console.log(null)
+    value === 'dis' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].miss_distance.kilometers - a.close_approach_data[0].miss_distance.kilometers ) : console.log(null)
+    
+    this.setState({
+      data: newData
+    })
+  }
+
   render() {
+
+    const selectNode = this.selectSort.current
+
     return (
       <div>
-        <h1 style={{color: 'white'}} >ASTEROIDS</h1>
+        <h1 style={{color: 'black'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
+
+        <h3 style={{color: 'black'}} >Sort by: 
+          <select ref={this.selectSort} >
+            <option value="vel" >Velocity</option>
+            <option value="dia" >Diameter</option>
+            <option value="dis" >Distance</option>
+          </select> <button onClick={() => this.sortBy(selectNode.value) } >Sort</button> </h3>
 
         <Grid container style={{ padding: 20 }} spacing={32} >
 
           {
-            this.state.data ? this.state.data.near_earth_objects.map(ast => {
+            this.state.data ? this.state.data.near_earth_objects[myDate].map(ast => {
               return (
                 <Grid item sm={6} key={ast.neo_reference_id} >
                   <Paper style={styles.paper} >
@@ -56,6 +87,7 @@ class Asteroids extends Component {
                     <h2>Diameter: {ast.estimated_diameter.kilometers.estimated_diameter_min.toFixed(2)} km - {ast.estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)}  km </h2>
                     <h2>Dangerous: {ast.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}</h2>
                     <h2>Velocity: {ast.close_approach_data.length !== 0 ? parseFloat(ast.close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2) : <span>Unknown</span>} km/h </h2>
+                    <h2>Distance from earth: {ast.close_approach_data.length !== 0 ? ast.close_approach_data[0].miss_distance.kilometers : <span>Unknown</span> } km </h2>
                   </Paper>
                 </Grid>
               )
@@ -68,16 +100,7 @@ class Asteroids extends Component {
 
         </Grid>
 
-        {
-          this.state.data ? (this.state.data.links.prev ? <button onClick={() => this.getData(this.state.data.links.prev)} style={styles.btn} >Prev</button> : <button className="disabled" style={styles.btnDisabled} >Prev</button>) : null
-        }
-
-        {
-          this.state.data ?
-            <button onClick={() => this.getData(this.state.data.links.next)} style={styles.btn} >Next</button> : null
-        }
-
-        <footer>
+        <footer style={{margin: 20, padding: 20}} >
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
           <a href="/contact" style={styles.footerLink} >Contact</a>

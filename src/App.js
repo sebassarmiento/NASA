@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './components/main'
 import Asteroids from './components/asteroids'
-import Contact from './components/contact'
+import Earth from './components/earth'
 import Jobs from './components/jobs'
 import Navigation from './components/nav'
 
@@ -22,7 +22,7 @@ class App extends Component {
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/asteroids' component={Asteroids} exact />
-        <Route path='/contact' component={Contact} exact />
+        <Route path='/earth' component={Earth} exact />
         <Route path='/jobs' component={Jobs} exact />
       </Switch>
       </div>

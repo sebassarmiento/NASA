@@ -8,14 +8,14 @@ import '../css/photos.css';
 
 const API_KEY = 'JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
 
-const API_URL = 'https://images-api.nasa.gov/search?q=apollo'
+const API_URL = 'https://images-api.nasa.gov/search?q=supernova'
 
 const styles = {
   mainGrid: { justifyContent: 'center', textAlign: 'center', alignItems: 'center', alignContent: 'center'},
   loader: { display: 'inline-block' },
   main: { textAlign:'center' },
   searchBar: { fontSize: 16, borderRadius: 10, border: '1px solid black', margin: 8, padding: 8},
-  btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none'  }
+  btn: { margin: 14 , padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none'  }
 }
 
 class App extends Component {
@@ -66,7 +66,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>EARTH PHOTOS</h1>
+        <h1>NASA'S PHOTOS</h1>
 
         <div style={{ margin: 20, padding: 20 }} >
 
@@ -79,7 +79,11 @@ class App extends Component {
         }
 
         {
-          this.state.data ? <h3>Showing {this.pageCount * 100 - 100 + 1}-{this.state.data.collection.items.length * this.pageCount} of {this.state.data.collection.metadata.total_hits} </h3> : null
+          this.state.data && this.state.data.collection.items.length ? <h3>Showing {this.pageCount * 100 - 100 + 1}-{this.state.data.collection.items.length * this.pageCount} of {this.state.data.collection.metadata.total_hits} </h3> : <h3>Oops! No matching results for '{searchNode ? searchNode.value : null}'</h3>
+        }
+
+        {
+          this.state.data && this.state.data.collection.items.length ? <h4>Results for '{searchNode.value ? searchNode.value : 'Supernova'}' </h4> : null
         }
 
         <Grid container style={styles.mainGrid} >
@@ -106,7 +110,7 @@ class App extends Component {
 
         {
           this.state.data && this.state.data.collection.links ? this.state.data.collection.links.map(link => {
-            return <button onClick={() => this.loadNextPage(link.href, link.rel) } style={styles.btn} > {link.prompt} </button>
+            return <button key={link.rel} onClick={() => this.loadNextPage(link.href, link.rel) } style={styles.btn} > {link.prompt} </button>
           } ) : console.log('No btn')
         }
 

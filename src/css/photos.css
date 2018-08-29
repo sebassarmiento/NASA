@@ -1,0 +1,15 @@
+input:focus{
+    outline: none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+button:focus{
+    outline: none;
+}
+
+.disabled:hover{
+    cursor: default;
+}

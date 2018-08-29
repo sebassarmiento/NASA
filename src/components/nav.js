@@ -35,8 +35,8 @@ class NavBar extends Component {
                             </NavLink>
 
 
-                            <NavLink to="/earth" style={styles.navBarText} >
-                                <Typography style={{color: 'white'}} >Earth</Typography>
+                            <NavLink to="/photos" style={styles.navBarText} >
+                                <Typography style={{color: 'white'}} >Photos</Typography>
                             </NavLink>
 
 

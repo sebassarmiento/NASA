@@ -7,7 +7,8 @@ const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=JsG393zPVDFLqXc7Zbn
 
 const styles = {
     descr: { padding: 20, margin: 20, fontSize: 20, color: 'black' },
-    title: { color: 'black', fontSize: 40 }
+    title: { color: 'black', fontSize: 40 },
+    loader: { margin: 30 }
 }
 
 class Test extends Component {
@@ -18,7 +19,6 @@ class Test extends Component {
     }
 
     componentDidMount() {
-        console.log('Funciona')
         fetch(API_URL).then(d => d.json()).then(resp => this.setState({
             data: resp
         }))
@@ -27,7 +27,7 @@ class Test extends Component {
     render() {
 
         return (
-            <div className="App" >
+            <div >
                 
                 {
                     this.state.data ? console.log(this.state.data) : null
@@ -41,7 +41,7 @@ class Test extends Component {
                             width='80%'
                             alt={this.state.data.title} />
                         <p style={styles.descr} >{this.state.data.explanation}</p>
-                    </div> : <CircularProgress />
+                    </div> : <CircularProgress style={styles.loader} />
                 }
             </div>
         );

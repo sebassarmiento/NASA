@@ -19,9 +19,9 @@ const API_URL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + myDate + '
 
 const styles = {
   paper: { paddingTop: 20, paddingBottom: 20 },
-  loader: { textAlign: 'center', margin: 50 },
+  loader: { textAlign: 'center', margin: 'auto' },
 
-  btn: { margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none' },
+  btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none' },
 
   btnDisabled: {  margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none'  },
   
@@ -70,11 +70,11 @@ class Asteroids extends Component {
         <h1 style={{color: 'black'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
 
         <h3 style={{color: 'black'}} >Sort by: 
-          <select ref={this.selectSort} >
+          <select ref={this.selectSort} style={{margin: 14, fontSize: 16}} >
             <option value="vel" >Velocity</option>
             <option value="dia" >Diameter</option>
             <option value="dis" >Distance</option>
-          </select> <button onClick={() => this.sortBy(selectNode.value) } >Sort</button> </h3>
+          </select> <button onClick={() => this.sortBy(selectNode.value) } style={styles.btn} >Sort</button> </h3>
 
         <Grid container style={{ padding: 20 }} spacing={32} >
 
@@ -100,11 +100,14 @@ class Asteroids extends Component {
 
         </Grid>
 
-        <footer style={{margin: 20, padding: 20}} >
+        {
+          this.state.data ? <footer style={{margin: 20, padding: 20}} >
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
-          <a href="/contact" style={styles.footerLink} >Contact</a>
-        </footer>
+          <a href="/photos" style={styles.footerLink} >Photos</a>
+          <a href="/Jobs" style={styles.footerLink} >Jobs</a>
+        </footer> : null
+        }
 
       </div>
     );

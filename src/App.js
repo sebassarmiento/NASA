@@ -4,7 +4,7 @@ import Home from './components/main'
 import Asteroids from './components/asteroids'
 import Photos from './components/photos'
 import Jobs from './components/jobs'
-import Navigation from './components/nav'
+import Navigation from './utils/nav'
 
 const styles = {
   App: { textAlign: 'center' }

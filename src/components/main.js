@@ -6,9 +6,10 @@ const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=JsG393zPVDFLqXc7Zbn
 
 
 const styles = {
-    descr: { padding: 20, margin: 20, fontSize: 20, color: 'black' },
-    title: { color: 'black', fontSize: 40 },
-    loader: { margin: 30 }
+    descr: { padding: 35, margin: 20, fontSize: 20, color: 'white' },
+    title: { color: 'white', fontSize: 40 },
+    loader: { margin: 30 },
+    img: { borderRadius: 20, boxShadow: '0px 4px solid white' }
 }
 
 class Test extends Component {
@@ -39,9 +40,11 @@ class Test extends Component {
                         <h4>{this.state.data.date}</h4>
                         <img src={this.state.data.hdurl}
                             width='80%'
-                            alt={this.state.data.title} />
+                            alt={this.state.data.title}
+                            style={styles.img}
+                        />
                         <p style={styles.descr} >{this.state.data.explanation}</p>
-                    </div> : <CircularProgress style={styles.loader} />
+                    </div> : <CircularProgress style={styles.loader} color='inherit' />
                 }
             </div>
         );

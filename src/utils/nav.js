@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
     navBarText: {textDecoration: 'none', fontSize: 60, margin: 10},
-    appBar: {backgroundColor: 'black'}
+    appBar: {backgroundColor: 'transparent'}
 };
 
 

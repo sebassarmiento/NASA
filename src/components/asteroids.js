@@ -3,6 +3,7 @@ import { CircularProgress } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import '../css/asteroids.css';
+import asteroid from '../img/asteroid.png';
 
 
 let date = new Date()
@@ -18,14 +19,14 @@ let myDate = year + '-' + month + '-' + day
 const API_URL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + myDate + '&end_date=' + myDate + '&api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
 
 const styles = {
-  paper: { paddingTop: 20, paddingBottom: 20 },
+  paper: { paddingTop: 20, paddingBottom: 20, background: 'url(' + asteroid + ') center center no-repeat', backgroundSize: '50%'  },
   loader: { textAlign: 'center', margin: 'auto' },
 
-  btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none' },
+  btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: '#f5f5f5', color: 'black', border: 'none' },
 
   btnDisabled: {  margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none'  },
   
-  footerLink: { textDecoration: 'none', color: 'black', margin: 30, padding: 20, marginTop:50 }
+  footerLink: { textDecoration: 'none', color: '#f5f5f5', margin: 30, padding: 20, marginTop:50 }
 }
 
 class Asteroids extends Component {
@@ -67,9 +68,9 @@ class Asteroids extends Component {
 
     return (
       <div>
-        <h1 style={{color: 'black'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
+        <h1 style={{color: '#f5f5f5'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
 
-        <h3 style={{color: 'black'}} >Sort by: 
+        <h3 style={{color: '#f5f5f5'}} >Sort by: 
           <select ref={this.selectSort} style={{margin: 14, fontSize: 16}} >
             <option value="vel" >Velocity</option>
             <option value="dia" >Diameter</option>
@@ -91,7 +92,7 @@ class Asteroids extends Component {
                   </Paper>
                 </Grid>
               )
-            }) : <CircularProgress style={styles.loader} />
+            }) : <CircularProgress style={styles.loader} color="inherit" />
           }
 
           {

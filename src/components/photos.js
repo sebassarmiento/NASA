@@ -14,9 +14,9 @@ const styles = {
   mainGrid: { justifyContent: 'center', textAlign: 'center', alignItems: 'center', alignContent: 'center', width: '100%'},
   loader: { display: 'inline-block' },
   main: { textAlign:'center' },
-  searchBar: { fontSize: 16, borderRadius: 10, border: '1px solid black', margin: 8, padding: 8},
+  searchBar: { fontSize: 16, borderRadius: 10, border: '1px solid black', margin: 8, padding: 8, backgroundColor: '#f5f5f575', boxShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white', textShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white' },
   footerLink: { textDecoration: 'none', color: '#f5f5f5', margin: 30, padding: 20, marginTop:50 },
-  btn: { margin: 14 , padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'white', color: 'black', border: 'none'  }
+  btn: { margin: 14 , padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 16, fontFamily: 'nasalization-rg' , borderRadius: 10, backgroundColor: 'white', color: 'black', border: 'none', boxShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white'  }
 }
 
 class App extends Component {
@@ -70,12 +70,12 @@ class App extends Component {
 
     return (
       <div>
-        <h1 className="nasa" >NASA PHOTOS</h1>
+        <h1 className="nasa" >NASA LIBRARY</h1>
 
         <div style={{ margin: 20, padding: 20 }} >
 
           <input type="text" placeholder="Search photos..." style={styles.searchBar} ref={this.searchInput} />
-          <button onClick={() => this.searchQuery(searchNode.value)} style={styles.btn} >Search</button>
+          <button onClick={() => this.searchQuery(searchNode.value)} style={styles.btn} >SEARCH</button>
         </div>
 
         {

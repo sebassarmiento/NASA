@@ -4,6 +4,8 @@ input:focus{
 
 button:hover{
     cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 button:focus{
@@ -12,4 +14,8 @@ button:focus{
 
 .disabled:hover{
     cursor: default;
+}
+
+body{
+    color: #f5f5f5dc
 }

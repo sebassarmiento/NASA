@@ -19,7 +19,7 @@ let myDate = year + '-' + month + '-' + day
 const API_URL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + myDate + '&end_date=' + myDate + '&api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
 
 const styles = {
-  paper: { paddingTop: 20, paddingBottom: 20, background: 'url(' + asteroid + ') center center no-repeat', backgroundSize: '50%'  },
+  paper: { paddingTop: 20, paddingBottom: 20, background: 'url(' + asteroid + ') center center no-repeat', backgroundSize: '50%', overFlow: 'visible'  },
   loader: { textAlign: 'center', margin: 'auto' },
 
   btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: '#f5f5f5', color: 'black', border: 'none' },
@@ -77,7 +77,7 @@ class Asteroids extends Component {
             <option value="dis" >Distance</option>
           </select> <button onClick={() => this.sortBy(selectNode.value) } style={styles.btn} >Sort</button> </h3>
 
-        <Grid container style={{ padding: 20 }} spacing={32} >
+        <Grid container style={{ padding: 20 }} spacing={0} >
 
           {
             this.state.data ? this.state.data.near_earth_objects[myDate].map(ast => {
@@ -102,7 +102,7 @@ class Asteroids extends Component {
         </Grid>
 
         {
-          this.state.data ? <footer style={{margin: 20, padding: 20}} >
+          this.state.data ? <footer className="footer-link" style={{margin: 20, padding: 20}} >
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
           <a href="/photos" style={styles.footerLink} >Photos</a>

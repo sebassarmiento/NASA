@@ -70,7 +70,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1 >NASA'S PHOTOS</h1>
+        <h1 className="nasa" >NASA PHOTOS</h1>
 
         <div style={{ margin: 20, padding: 20 }} >
 

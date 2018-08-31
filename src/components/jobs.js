@@ -100,7 +100,7 @@ class Asteroids extends Component {
 
         </Grid>
 
-        <footer style={{margin: 20, padding: 20}} >
+        <footer className="footer-link" >
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
           <a href="/contact" style={styles.footerLink} >Contact</a>

@@ -22,9 +22,9 @@ const styles = {
   paper: { paddingTop: 20, paddingBottom: 20, background: 'url(' + asteroid + ') center center no-repeat', backgroundSize: '50%', overFlow: 'visible'  },
   loader: { textAlign: 'center', margin: 'auto' },
 
-  btn: { padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 18, fontFamily: 'Arial', borderRadius: 10, backgroundColor: '#f5f5f5', color: 'black', border: 'none' },
+  btn: { margin: 14 , padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 16, fontFamily: 'nasalization-rg' , borderRadius: 10, backgroundColor: 'white', color: 'black', border: 'none', boxShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white'  },
 
-  btnDisabled: {  margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none'  },
+  btnDisabled: {  margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'nasalization-rg', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none'  },
   
   footerLink: { textDecoration: 'none', color: '#f5f5f5', margin: 30, padding: 20, marginTop:50 }
 }
@@ -75,7 +75,7 @@ class Asteroids extends Component {
             <option value="vel" >Velocity</option>
             <option value="dia" >Diameter</option>
             <option value="dis" >Distance</option>
-          </select> <button onClick={() => this.sortBy(selectNode.value) } style={styles.btn} >Sort</button> </h3>
+          </select> <button onClick={() => this.sortBy(selectNode.value) } style={styles.btn} >SORT</button> </h3>
 
         <Grid container style={{ padding: 20 }} spacing={0} >
 

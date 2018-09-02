@@ -12,7 +12,7 @@ const styles = {
     img: { borderRadius: 20, boxShadow: '0px 4px solid white' }
 }
 
-class Test extends Component {
+class Home extends Component {
 
     constructor() {
         super()
@@ -38,11 +38,14 @@ class Test extends Component {
                     this.state.data ? <div>
                         <h1 style={styles.title} >{this.state.data.title}</h1>
                         <h4>{this.state.data.date}</h4>
-                        <img src={this.state.data.hdurl}
+                        {
+                            this.state.data.media_type === 'image' ? <img src={this.state.data.hdurl}
                             width='80%'
                             alt={this.state.data.title}
                             style={styles.img}
-                        />
+                        /> : this.state.data.media_type === 'video' ? <iframe width="80%" height="500" src={this.state.data.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe> : null
+                        }
+                        
                         <p style={styles.descr} >{this.state.data.explanation}</p>
                     </div> : <CircularProgress style={styles.loader} color='inherit' />
                 }
@@ -51,4 +54,4 @@ class Test extends Component {
     }
 }
 
-export default Test;
+export default Home;

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './components/main'
 import Asteroids from './components/asteroids'
 import Photos from './components/photos'
-import Jobs from './components/jobs'
+import ISS from './components/space_station'
 import Navigation from './utils/nav'
 
 const styles = {
@@ -23,7 +23,7 @@ class App extends Component {
         <Route path='/' component={Home} exact />
         <Route path='/asteroids' component={Asteroids} exact />
         <Route path='/photos' component={Photos} exact />
-        <Route path='/jobs' component={Jobs} exact />
+        <Route path='/iss' component={ISS} exact />
       </Switch>
       </div>
       </BrowserRouter >

@@ -22,7 +22,7 @@ class NavBar extends Component {
             home: false,
             asteroids: false,
             photos: false,
-            jobs: false,
+            space_station: false,
         }
     }
 
@@ -30,7 +30,7 @@ class NavBar extends Component {
         val === 'home' ? this.setState({ home: bool }) : null
         val === 'asteroids' ? this.setState({ asteroids: bool }) : null
         val === 'photos' ? this.setState({ photos: bool }) : null
-        val === 'jobs' ? this.setState({ jobs: bool }) : null
+        val === 'space_station' ? this.setState({ space_station: bool }) : null
     }
 
 
@@ -65,9 +65,9 @@ class NavBar extends Component {
                         </NavLink>
 
 
-                        <NavLink to="/jobs" style={styles.navBarText} >
+                        <NavLink to="/iss" style={styles.navBarText} >
                             {
-                                this.state.jobs ? <Typography style={styles.navHover} onMouseLeave={() => this.changeClass('jobs',false)} >JOBS</Typography> : <Typography style={styles.navBarLink} onMouseEnter={() => this.changeClass('jobs', true)} >JOBS</Typography>
+                                this.state.space_station ? <Typography style={styles.navHover} onMouseLeave={() => this.changeClass('space_station',false)} >SPACE STATION</Typography> : <Typography style={styles.navBarLink} onMouseEnter={() => this.changeClass('space_station', true)} >SPACE STATION</Typography>
                             }
                         </NavLink>
 

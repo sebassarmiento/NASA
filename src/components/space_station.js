@@ -5,93 +5,63 @@ import Grid from '@material-ui/core/Grid';
 import '../css/asteroids.css';
 
 
-let date = new Date()
 
-let year = date.getFullYear()
+const API_URL1 = 'http://api.open-notify.org/iss-now.json'
 
-let month = ('0' + (date.getMonth() + 1 )).slice(-2)
-
-let day = ('0' + date.getDate()).slice(-2)
-
-let myDate = year + '-' + month + '-' + day
-
-const API_URL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=' + myDate + '&end_date=' + myDate + '&api_key=JsG393zPVDFLqXc7ZbnKHH6DYwpCi0OjFlWBsi81'
+const API_URL2 = 'http://api.open-notify.org/astros.json'
 
 const styles = {
   paper: { paddingTop: 20, paddingBottom: 20 },
   loader: { textAlign: 'center', margin: 50 },
 
-  btn: { margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none' },
+  btn: { margin: 20, padding: 10, paddingLeft: 20, paddingRight: 20, fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'black', color: 'white', border: 'none' },
 
-  btnDisabled: {  margin: 20 ,padding: 10, paddingLeft:20, paddingRight: 20 , fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none'  },
-  
-  footerLink: { textDecoration: 'none', color: 'black', margin: 30, padding: 20, marginTop:50 }
+  btnDisabled: { margin: 20, padding: 10, paddingLeft: 20, paddingRight: 20, fontSize: 20, fontFamily: 'Arial', borderRadius: 10, backgroundColor: 'grey', color: 'white', border: 'none' },
+
+  footerLink: { textDecoration: 'none', color: 'white', margin: 30, padding: 20, marginTop: 50 }
 }
 
-class Asteroids extends Component {
+class ISS extends Component {
   constructor() {
     super()
     this.state = {}
-
-    this.selectSort = React.createRef()
-
-    this.astArray = []
     this.getData = this.getData.bind(this)
   }
 
   componentDidMount() {
-    this.getData(API_URL)
+    this.getData(API_URL1)
+    this.getData(API_URL2, 1)
   }
 
-  getData(url) {
-    fetch(url).then(d => d.json()).then(resp => this.setState({
+  getData(url, sec) {
+    !sec ? fetch(url).then(d => d.json()).then(resp => this.setState({
       data: resp
+    })) : fetch(url).then(d => d.json()).then(resp => this.setState({
+      people: resp
     }))
-  }
-
-  sortBy(value){
-    const newData = this.state.data
-
-    value === 'vel' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].relative_velocity.kilometers_per_hour - a.close_approach_data[0].relative_velocity.kilometers_per_hour ) : console.log(null)
-    value === 'dia' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.estimated_diameter.kilometers.estimated_diameter_max - a.estimated_diameter.kilometers.estimated_diameter_max ) : console.log(null)
-    value === 'dis' ? this.state.data.near_earth_objects[myDate].sort((a, b) => b.close_approach_data[0].miss_distance.kilometers - a.close_approach_data[0].miss_distance.kilometers ) : console.log(null)
-    
-    this.setState({
-      data: newData
-    })
   }
 
   render() {
 
-    const selectNode = this.selectSort.current
-
     return (
       <div>
-        <h1 style={{color: 'black'}} >NUMBER OF CLOSE TO EARTH ASTEROIDS TODAY: { this.state.data ? this.state.data.element_count : null } </h1>
 
-        <h3 style={{color: 'black'}} >Sort by: 
-          <select ref={this.selectSort} >
-            <option value="vel" >Velocity</option>
-            <option value="dia" >Diameter</option>
-            <option value="dis" >Distance</option>
-          </select> <button onClick={() => this.sortBy(selectNode.value) } >Sort</button> </h3>
+        {
+          this.state.data ? <div><h2>The current location of the International Space Station (ISS) is:</h2>
+            <h3>{this.state.data.iss_position.latitude} Latitude</h3>
+            <h3>{this.state.data.iss_position.longitude} Longitude</h3></div> : null
+        }
 
-        <Grid container style={{ padding: 20 }} spacing={32} >
+        {
+          this.state.people ? <h2>There are currently {this.state.people.number} people in space right now:</h2> : null
+        }
+
+        <Grid container style={{ padding: 20 }} >
 
           {
-            this.state.data ? this.state.data.near_earth_objects[myDate].map(ast => {
-              return (
-                <Grid item sm={6} key={ast.neo_reference_id} >
-                  <Paper style={styles.paper} >
-                    <h1>{ast.name}</h1>
-                    <h2>Diameter: {ast.estimated_diameter.kilometers.estimated_diameter_min.toFixed(2)} km - {ast.estimated_diameter.kilometers.estimated_diameter_max.toFixed(2)}  km </h2>
-                    <h2>Dangerous: {ast.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}</h2>
-                    <h2>Velocity: {ast.close_approach_data.length !== 0 ? parseFloat(ast.close_approach_data[0].relative_velocity.kilometers_per_hour).toFixed(2) : <span>Unknown</span>} km/h </h2>
-                    <h2>Distance from earth: {ast.close_approach_data.length !== 0 ? ast.close_approach_data[0].miss_distance.kilometers : <span>Unknown</span> } km </h2>
-                  </Paper>
-                </Grid>
-              )
-            }) : <CircularProgress style={styles.loader} />
+            this.state.people ? this.state.people.people.map(person => {
+              return (<Grid item sm={6} key={person.name} ><h3>{person.name}</h3><h3>{person.craft}</h3></Grid>)
+            }) : <CircularProgress />
           }
 
           {
@@ -100,10 +70,11 @@ class Asteroids extends Component {
 
         </Grid>
 
-        <footer className="footer-link" >
+        <footer>
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
-          <a href="/contact" style={styles.footerLink} >Contact</a>
+          <a href="/photos" style={styles.footerLink} >Photos</a>
+          <a href="/iss" style={styles.footerLink} >Space Station</a>
         </footer>
 
       </div>
@@ -111,4 +82,4 @@ class Asteroids extends Component {
   }
 }
 
-export default Asteroids;
+export default ISS;

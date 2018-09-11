@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CircularProgress } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import '../css/asteroids.css';
 
@@ -26,6 +25,7 @@ class ISS extends Component {
     super()
     this.state = {}
     this.getData = this.getData.bind(this)
+    this.showPosition = this.showPosition.bind(this)
   }
 
   componentDidMount() {
@@ -34,11 +34,16 @@ class ISS extends Component {
   }
 
   getData(url, sec) {
+    console.log(sec)
     !sec ? fetch(url).then(d => d.json()).then(resp => this.setState({
       data: resp
     })) : fetch(url).then(d => d.json()).then(resp => this.setState({
       people: resp
     }))
+  }
+
+  showPosition(pos){
+    console.log(pos)
   }
 
   render() {
@@ -53,6 +58,14 @@ class ISS extends Component {
         }
 
         {
+          this.state.iss ? console.log(this.state.iss) : null
+        }
+
+        {
+          navigator.geolocation.getCurrentPosition(this.showPosition)
+        }
+
+        {
           this.state.people ? <h2>There are currently {this.state.people.number} people in space right now:</h2> : null
         }
 
@@ -62,10 +75,6 @@ class ISS extends Component {
             this.state.people ? this.state.people.people.map(person => {
               return (<Grid item sm={6} key={person.name} ><h3>{person.name}</h3><h3>{person.craft}</h3></Grid>)
             }) : <CircularProgress />
-          }
-
-          {
-            this.state.data ? console.log(this.state.data) : null
           }
 
         </Grid>

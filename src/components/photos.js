@@ -123,7 +123,7 @@ class App extends Component {
           <a href="/" style={styles.footerLink} >Home</a>
           <a href="/asteroids" style={styles.footerLink} >Asteroids</a>
           <a href="/photos" style={styles.footerLink} >Photos</a>
-          <a href="/Jobs" style={styles.footerLink} >Jobs</a>
+          <a href="/iss" style={styles.footerLink} >Space Station</a>
         </footer> : null
         }
 

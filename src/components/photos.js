@@ -14,7 +14,7 @@ const styles = {
   mainGrid: { justifyContent: 'center', textAlign: 'center', alignItems: 'center', alignContent: 'center', width: '100%'},
   loader: { display: 'inline-block' },
   main: { textAlign:'center' },
-  searchBar: { fontSize: 16, borderRadius: 10, border: '1px solid black', margin: 8, padding: 8, backgroundColor: '#f5f5f575', boxShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white', textShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white' },
+  searchBar: { fontSize: 16, borderRadius: 10, border: '1px solid black', margin: 8, padding: 8, backgroundColor: 'rgba(0, 0, 0, 0.6)', color: 'rgba(255, 255, 255, 0.9)' , boxShadow: '1px 1px 4px black, 0 0 25px black, 0 0 5px black' },
   footerLink: { textDecoration: 'none', color: '#f5f5f5', margin: 30, padding: 20, marginTop:50 },
   btn: { margin: 14 , padding: 6, paddingLeft:18, paddingRight: 18 , fontSize: 16, fontFamily: 'nasalization-rg' , borderRadius: 10, backgroundColor: 'white', color: 'black', border: 'none', boxShadow: '1px 1px 4px white, 0 0 25px white, 0 0 5px white'  }
 }
